@@ -1,0 +1,116 @@
+# Git
+.gitmessage
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虛擬環境
+venv/
+env/
+ENV/
+.venv/
+
+# PyTorch
+*.pth
+*.pt
+*.onnx
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# 輸出檔案
+*.csv
+*.json
+*.xlsx
+output/
+
+# AI/ML 特定
+*.pkl
+*.joblib
+*.h5
+*.pb
+*.model
+*.weights
+models/trained/
+models/checkpoints/
+data/raw/
+data/processed/
+experiments/results/
+.mlruns/
+mlruns/
+
+# 暫存檔案
+tmp/
+temp/
+*.tmp
+*.bak
+
+# 環境變數和配置
+.env
+.env.local
+.env.production
+config/local.py
+
+# 敏感資料 (金融合規)
+# 這些檔案絕不應該被提交
+*.key
+*.pem
+secrets/
+credentials/
+personal_data/
+
+# Node.js (前端)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React 建置檔案
+build/
+dist/
+
+# 測試覆蓋率
+coverage/
+.nyc_output/
+
+# 資料庫
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+docker-compose.override.yml
