@@ -1,0 +1,250 @@
+/**
+ * 全域樣式
+ *
+ * 中國風算命主題的全域 CSS
+ */
+
+/* 重置和基礎樣式 */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'SimSun', serif;
+  background: linear-gradient(135deg, #faf8f3 0%, #f5f1e8 100%);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* 應用程式佈局 */
+.app-layout {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.app-content {
+  padding: 0;
+  background: transparent;
+}
+
+/* 載入動畫 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 16px;
+}
+
+/* 中國風裝飾元素 */
+.chinese-border {
+  border: 2px solid #d4af37;
+  border-image: linear-gradient(45deg, #d4af37, #e6c757) 1;
+  position: relative;
+}
+
+.chinese-border::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  z-index: -1;
+}
+
+/* 金色漸變背景 */
+.golden-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #e6c757 50%, #f7e98e 100%);
+}
+
+/* 卡片陰影效果 */
+.chinese-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  box-shadow:
+    0 4px 16px rgba(212, 175, 55, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 中國風字體樣式 */
+.chinese-title {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'KaiTi', serif;
+  font-weight: 600;
+  color: #2c1810;
+  text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.2);
+}
+
+.chinese-subtitle {
+  font-family: 'PingFang SC', 'Microsoft YaHei', serif;
+  color: #8c6239;
+  font-weight: 500;
+}
+
+/* 圖標樣式 */
+.golden-icon {
+  color: #d4af37;
+  filter: drop-shadow(1px 1px 2px rgba(212, 175, 55, 0.3));
+}
+
+/* 按鈕增強樣式 */
+.ant-btn-primary {
+  background: linear-gradient(135deg, #d4af37 0%, #e6c757 100%);
+  border: none;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.ant-btn-primary:hover {
+  background: linear-gradient(135deg, #e6c757 0%, #f7e98e 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* 輸入框增強樣式 */
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+}
+
+/* 卡片增強樣式 */
+.ant-card {
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.1);
+}
+
+.ant-card-head {
+  background: linear-gradient(135deg, #f7f2e8 0%, #faf8f3 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* 表格增強樣式 */
+.ant-table-thead > tr > th {
+  background: linear-gradient(135deg, #f7f2e8 0%, #faf8f3 100%);
+  color: #2c1810;
+  font-weight: 600;
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: rgba(212, 175, 55, 0.05) !important;
+}
+
+/* 模態框增強樣式 */
+.ant-modal-header {
+  background: linear-gradient(135deg, #f7f2e8 0%, #faf8f3 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* 選單增強樣式 */
+.ant-menu-item-selected {
+  background: rgba(212, 175, 55, 0.1) !important;
+  color: #d4af37 !important;
+  font-weight: 600;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .app-content {
+    padding: 0 8px;
+  }
+
+  .chinese-title {
+    font-size: 20px;
+  }
+
+  .chinese-subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chinese-title {
+    font-size: 18px;
+  }
+
+  .chinese-subtitle {
+    font-size: 12px;
+  }
+}
+
+/* 滾動條樣式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.7);
+}
+
+/* 動畫效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.3),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: goldShimmer 2s infinite;
+}
+
+/* 特殊效果類別 */
+.text-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #e6c757 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
