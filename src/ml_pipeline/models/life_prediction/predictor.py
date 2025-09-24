@@ -49,7 +49,6 @@ class LifePredictionModel(BaseModel):
             for hidden_dim in self.hidden_dims:
                 layers.extend([
                     nn.Linear(in_dim, hidden_dim),
-                    nn.BatchNorm1d(hidden_dim),
                     nn.ReLU(inplace=True),
                     nn.Dropout(0.3)
                 ])
@@ -114,9 +113,7 @@ class LifePredictionModel(BaseModel):
                 nn.init.xavier_uniform_(m.weight)
                 if m.bias is not None:
                     nn.init.constant_(m.bias, 0)
-            elif isinstance(m, nn.BatchNorm1d):
-                nn.init.constant_(m.weight, 1)
-                nn.init.constant_(m.bias, 0)
+# 移除BatchNorm相關的權重初始化
 
     def forward(self, x: torch.Tensor) -> Dict[str, torch.Tensor]:
         """前向傳播"""
