@@ -72,11 +72,12 @@ class Settings(BaseSettings):
     LOG_FILE: str = config("LOG_FILE", default="./logs/app.log")
 
     # 郵件設定 (用於通知和合規)
-    SMTP_SERVER: Optional[str] = config("SMTP_SERVER", default=None)
+    SMTP_HOST: Optional[str] = config("SMTP_HOST", default=None)
     SMTP_PORT: int = config("SMTP_PORT", default=587, cast=int)
     SMTP_USERNAME: Optional[str] = config("SMTP_USERNAME", default=None)
     SMTP_PASSWORD: Optional[str] = config("SMTP_PASSWORD", default=None)
-    EMAIL_FROM: str = config("EMAIL_FROM", default="noreply@lifepredict.com")
+    FROM_EMAIL: str = config("FROM_EMAIL", default="noreply@lifepredict.com")
+    FROM_NAME: str = config("FROM_NAME", default="壽命預測系統")
 
     # 監控設定
     PROMETHEUS_ENABLED: bool = config("PROMETHEUS_ENABLED", default=True, cast=bool)
@@ -132,6 +133,10 @@ class Settings(BaseSettings):
 
 # 建立全域設定實例
 settings = Settings()
+
+def get_settings() -> Settings:
+    """獲取設定實例"""
+    return settings
 
 
 # 開發環境專用設定

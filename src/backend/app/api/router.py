@@ -7,13 +7,14 @@ API 路由器
 from fastapi import APIRouter
 
 # 導入各個模組的路由器
-# from app.api.endpoints import auth, users, predictions, health
+from app.api.auth import router as auth_router
+# from app.api.endpoints import users, predictions, health
 
 # 建立主要 API 路由器
 api_router = APIRouter()
 
 # 註冊各個端點路由
-# api_router.include_router(auth.router, prefix="/auth", tags=["認證"])
+api_router.include_router(auth_router, tags=["認證"])
 # api_router.include_router(users.router, prefix="/users", tags=["用戶管理"])
 # api_router.include_router(predictions.router, prefix="/predict", tags=["預測"])
 # api_router.include_router(health.router, prefix="/health", tags=["健康檢查"])
@@ -42,9 +43,9 @@ async def api_status():
         "api_version": "1.0.0",
         "status": "運行中",
         "features": {
-            "authentication": "規劃中",
-            "face_upload": "規劃中",
-            "life_prediction": "規劃中",
-            "history": "規劃中"
+            "authentication": "✅ 已完成",
+            "face_upload": "🔄 進行中",
+            "life_prediction": "✅ 架構完成",
+            "history": "⏳ 規劃中"
         }
     }
