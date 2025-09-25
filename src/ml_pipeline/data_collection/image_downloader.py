@@ -62,7 +62,16 @@ class RealImageDownloader:
             # 下載圖片
             logger.info(f"下載圖片: {person_name} - {image_url}")
 
-            async with session.get(image_url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+            # 設置Wikipedia友好的headers
+            headers = {
+                'User-Agent': 'LifePredictionBot/1.0 (https://example.com/contact; research@example.com) Python/aiohttp',
+                'Referer': 'https://en.wikipedia.org/',
+                'Accept': 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Cache-Control': 'no-cache'
+            }
+
+            async with session.get(image_url, timeout=aiohttp.ClientTimeout(total=30), headers=headers) as response:
                 if response.status != 200:
                     logger.warning(f"圖片下載失敗 {response.status}: {image_url}")
                     return None
