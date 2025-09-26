@@ -213,7 +213,23 @@ class RealImageDownloader:
             return None
 
     def check_face_detectability(self, image_array: np.ndarray) -> Dict[str, Any]:
-        """檢查圖片中是否可檢測到面部（使用Haar Cascade）"""
+        """檢查圖片中是否可檢測到面部（使用先進檢測器）"""
+        try:
+            from ..models.face_detection.advanced_detector import advanced_face_detector
+
+            # 使用先進面部檢測器
+            return advanced_face_detector.get_detection_summary(image_array)
+
+        except ImportError:
+            # 如果先進檢測器不可用，回退到基本Haar Cascade
+            logger.warning("先進面部檢測器不可用，使用基本Haar Cascade")
+            return self._basic_face_detection(image_array)
+        except Exception as e:
+            logger.error(f"先進面部檢測失敗: {e}")
+            return self._basic_face_detection(image_array)
+
+    def _basic_face_detection(self, image_array: np.ndarray) -> Dict[str, Any]:
+        """基本面部檢測（Haar Cascade）"""
         try:
             # 轉換為灰階
             gray = cv2.cvtColor(image_array, cv2.COLOR_RGB2GRAY)
@@ -233,16 +249,20 @@ class RealImageDownloader:
                 'faces_detected': len(faces),
                 'face_boxes': faces.tolist() if len(faces) > 0 else [],
                 'detectable': len(faces) > 0,
-                'largest_face_area': max([w * h for (x, y, w, h) in faces]) if len(faces) > 0 else 0
+                'largest_face_area': max([w * h for (x, y, w, h) in faces]) if len(faces) > 0 else 0,
+                'methods_used': ['haar'],
+                'average_confidence': 0.8 if len(faces) > 0 else 0.0
             }
 
         except Exception as e:
-            logger.error(f"面部檢測失敗: {e}")
+            logger.error(f"基本面部檢測失敗: {e}")
             return {
                 'faces_detected': 0,
                 'face_boxes': [],
                 'detectable': False,
                 'largest_face_area': 0,
+                'methods_used': [],
+                'average_confidence': 0.0,
                 'error': str(e)
             }
 

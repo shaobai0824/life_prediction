@@ -31,15 +31,23 @@ class MassDataConverter:
 
     def find_latest_mass_data(self) -> str:
         """尋找最新的大量收集資料檔案"""
-        pattern = "mass_collected_*.json"
-        files = list(self.input_dir.glob(pattern))
+        # 檢查改進版收集檔案
+        enhanced_dir = self.project_root / "data" / "collected" / "enhanced_search"
+        enhanced_pattern = "enhanced_collected_*.json"
+        enhanced_files = list(enhanced_dir.glob(enhanced_pattern))
 
-        if not files:
-            raise FileNotFoundError(f"找不到大量收集資料檔案，模式: {pattern}")
+        # 檢查原版收集檔案
+        original_pattern = "mass_collected_*.json"
+        original_files = list(self.input_dir.glob(original_pattern))
+
+        all_files = enhanced_files + original_files
+
+        if not all_files:
+            raise FileNotFoundError(f"找不到收集資料檔案")
 
         # 選擇最新的檔案
-        latest_file = max(files, key=lambda x: x.stat().st_mtime)
-        logger.info(f"找到最新的大量收集檔案: {latest_file}")
+        latest_file = max(all_files, key=lambda x: x.stat().st_mtime)
+        logger.info(f"找到最新的收集檔案: {latest_file}")
         return str(latest_file)
 
     def convert_to_training_format(self, input_file: str) -> Dict[str, Any]:
